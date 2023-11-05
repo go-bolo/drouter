@@ -7,7 +7,6 @@ import (
 )
 
 type DRouterPlugin struct {
-	bolo.Pluginer
 	Name string
 
 	UrlAliasController *UrlAliasController
@@ -42,6 +41,10 @@ func (r *DRouterPlugin) BindRoutes(app bolo.App) error {
 
 func (r *DRouterPlugin) SetTemplateFuncMap(app bolo.App) error {
 	return nil
+}
+
+func (p *DRouterPlugin) GetMigrations() []*bolo.Migration {
+	return []*bolo.Migration{}
 }
 
 type PluginCfgs struct{}
