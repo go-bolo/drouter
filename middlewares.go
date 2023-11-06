@@ -56,7 +56,12 @@ func urlAliasMiddleware() echo.MiddlewareFunc {
 				}).Error("urlAliasMiddleware Error on get url alias")
 			}
 
-			responseContentType := c.Get("responseContentType").(string)
+			responseContentType := ""
+			r := c.Get("responseContentType")
+			switch r := r.(type) {
+			case string:
+				responseContentType = r
+			}
 
 			if record.Target != "" && record.Alias != "" {
 				if record.Target == path && responseContentType == "text/html" {
